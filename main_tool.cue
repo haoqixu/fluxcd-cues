@@ -16,22 +16,25 @@ command: seal: {
 		stdout: string
 		path:   strings.TrimSpace(stdout)
 	}
-	list: file.Glob & {
-		glob: "\(gitRoot.path)/**/**/*.secrets.cue"
+	list: exec.Run & {
+		cmd: ["find", gitRoot.path, "-type", "f", "-name", "*.secrets.cue", "-print0"]
+		stdout: string
 	}
-	for _, filepath in list.files {
-		(filepath): {
-			secret: file.Read & {
-				filename: filepath
-				contents: string
-			}
-			if !strings.Contains(secret.contents, sops.marker) {
-				print: cli.Print & {
-					text: "seal \(filepath)"
+	files: {
+		for filepath in strings.Split(list.stdout, "\u0000") if filepath != "" {
+			(filepath): {
+				secret: file.Read & {
+					filename: filepath
+					contents: string
 				}
-				sops: exec.Run & {
-					$after: print
-					cmd: ["sops", "-e", "-i", filepath]
+				if !strings.Contains(secret.contents, sops.marker) {
+					print: cli.Print & {
+						text: "seal \(filepath)"
+					}
+					sops: exec.Run & {
+						$after: print
+						cmd: ["sops", "-e", "-i", filepath]
+					}
 				}
 			}
 		}
@@ -45,22 +48,25 @@ command: unseal: {
 		stdout: string
 		path:   strings.TrimSpace(stdout)
 	}
-	list: file.Glob & {
-		glob: "\(gitRoot.path)/**/**/*.secrets.cue"
+	list: exec.Run & {
+		cmd: ["find", gitRoot.path, "-type", "f", "-name", "*.secrets.cue", "-print0"]
+		stdout: string
 	}
-	for _, filepath in list.files {
-		(filepath): {
-			secret: file.Read & {
-				filename: filepath
-				contents: string
-			}
-			if strings.Contains(secret.contents, sops.marker) {
-				print: cli.Print & {
-					text: "unseal \(filepath)"
+	files: {
+		for filepath in strings.Split(list.stdout, "\u0000") if filepath != "" {
+			(filepath): {
+				secret: file.Read & {
+					filename: filepath
+					contents: string
 				}
-				sops: exec.Run & {
-					$after: print
-					cmd: ["sops", "-d", "-i", filepath]
+				if strings.Contains(secret.contents, sops.marker) {
+					print: cli.Print & {
+						text: "unseal \(filepath)"
+					}
+					sops: exec.Run & {
+						$after: print
+						cmd: ["sops", "-d", "-i", filepath]
+					}
 				}
 			}
 		}
