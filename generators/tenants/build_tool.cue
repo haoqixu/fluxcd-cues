@@ -3,17 +3,14 @@ package tenants
 import (
 	"encoding/yaml"
 	"path"
-	"strings"
 	"tool/cli"
 	"tool/exec"
 	"tool/file"
 	"text/tabwriter"
-
-	kubernetes "k8s.io/apimachinery/pkg/runtime"
 )
 
 // The resources map holds the Kubernetes objects belonging to all tenants.
-resources: [ID=_]: kubernetes.#Object
+resources: [ID=_]: _
 for t in tenants {
 	resources: t.resources
 }

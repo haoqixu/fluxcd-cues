@@ -18,17 +18,5 @@ fmt:
 	@cue fmt ./tools/...
 
 mod:
-	go get -u k8s.io/api/...
-	cue get go k8s.io/api/...
-	go get -u github.com/fluxcd/source-controller/api/v1beta2
-	cue get go github.com/fluxcd/source-controller/api/v1beta2
-	go get -u github.com/fluxcd/kustomize-controller/api/v1beta2
-	cue get go github.com/fluxcd/kustomize-controller/api/v1beta2
-	go get -u github.com/fluxcd/notification-controller/api/v1beta1
-	cue get go github.com/fluxcd/notification-controller/api/v1beta1
-	go get -u github.com/fluxcd/helm-controller/api/v2beta1
-	cue get go github.com/fluxcd/helm-controller/api/v2beta1
-	go get -u github.com/fluxcd/image-reflector-controller/api/v1beta1
-	cue get go github.com/fluxcd/image-reflector-controller/api/v1beta1
-	go get -u github.com/fluxcd/image-automation-controller/api/v1beta1
-	cue get go github.com/fluxcd/image-automation-controller/api/v1beta1
+	@cue mod get cue.dev/x/k8s.io@latest cue.dev/x/crd/fluxcd.io@latest
+	@cue mod tidy

@@ -1,13 +1,13 @@
 package release
 
 import (
-	corev1 "k8s.io/api/core/v1"
-	fluxv1 "github.com/fluxcd/source-controller/api/v1beta2"
+	corev1 "cue.dev/x/k8s.io/api/core/v1"
+	fluxv1 "cue.dev/x/crd/fluxcd.io/source/v1"
 )
 
 #HelmRepository: fluxv1.#HelmRepository & {
 	_spec:      #ReleaseSpec
-	apiVersion: "source.toolkit.fluxcd.io/v1beta2"
+	apiVersion: "source.toolkit.fluxcd.io/v1"
 	kind:       "HelmRepository"
 	metadata: {
 		name:        _spec.name

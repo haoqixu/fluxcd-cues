@@ -19,7 +19,6 @@ promotion and ultimately reduce toil.
 
 To run `cue` commands, you'll need the following tools:
 
-- Go >= 1.17.0
 - CUE >= 0.4.3
 - SOPS >= 3.7.0
 - Flux >= 0.28.0
@@ -27,7 +26,7 @@ To run `cue` commands, you'll need the following tools:
 On macOS or Linux you can install the prerequisites with Homebrew:
 
 ```shell
-brew install go cue sops fluxcd/tap/flux
+brew install cue sops fluxcd/tap/flux
 ```
 
 ### Secrets management

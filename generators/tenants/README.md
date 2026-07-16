@@ -79,21 +79,21 @@ TENANT    RESOURCE                                API VERSION
 dev-team  Namespace/dev-apps                      v1
 dev-team  ServiceAccount/dev-apps/flux-dev-team   v1
 dev-team  RoleBinding/dev-apps/flux-dev-team      rbac.authorization.k8s.io/v1
-dev-team  GitRepository/dev-apps/dev-team         source.toolkit.fluxcd.io/v1beta2
-dev-team  Kustomization/dev-apps/dev-team         kustomize.toolkit.fluxcd.io/v1beta2
+dev-team  GitRepository/dev-apps/dev-team         source.toolkit.fluxcd.io/v1
+dev-team  Kustomization/dev-apps/dev-team         kustomize.toolkit.fluxcd.io/v1
 dev-team  Secret/dev-apps/git-dev-team            v1
 dev-team  Secret/dev-apps/slack-dev-team          v1
-dev-team  Provider/dev-apps/slack-dev-team        notification.toolkit.fluxcd.io/v1beta1
-dev-team  Alert/dev-apps/slack-dev-team           notification.toolkit.fluxcd.io/v1beta1
+dev-team  Provider/dev-apps/slack-dev-team        notification.toolkit.fluxcd.io/v1beta3
+dev-team  Alert/dev-apps/slack-dev-team           notification.toolkit.fluxcd.io/v1beta3
 ops-team  Namespace/ops-apps                      v1
 ops-team  ServiceAccount/ops-apps/flux-ops-team   v1
 ops-team  RoleBinding/ops-apps/flux-ops-team      rbac.authorization.k8s.io/v1
-ops-team  GitRepository/ops-apps/ops-team         source.toolkit.fluxcd.io/v1beta2
-ops-team  Kustomization/ops-apps/ops-team         kustomize.toolkit.fluxcd.io/v1beta2
+ops-team  GitRepository/ops-apps/ops-team         source.toolkit.fluxcd.io/v1
+ops-team  Kustomization/ops-apps/ops-team         kustomize.toolkit.fluxcd.io/v1
 ops-team  ClusterRoleBinding/flux-ops-team        rbac.authorization.k8s.io/v1
 ops-team  Secret/ops-apps/slack-ops-team          v1
-ops-team  Provider/ops-apps/slack-ops-team        notification.toolkit.fluxcd.io/v1beta1
-ops-team  Alert/ops-apps/slack-ops-team           notification.toolkit.fluxcd.io/v1beta1
+ops-team  Provider/ops-apps/slack-ops-team        notification.toolkit.fluxcd.io/v1beta3
+ops-team  Alert/ops-apps/slack-ops-team           notification.toolkit.fluxcd.io/v1beta3
 ```
 
 ### Encrypt secrets in YAML output

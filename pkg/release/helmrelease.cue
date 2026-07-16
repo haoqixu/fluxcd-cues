@@ -4,15 +4,14 @@ import (
 	"strings"
 	"uuid"
 	"encoding/yaml"
-
-	corev1 "k8s.io/api/core/v1"
-	fluxv1 "github.com/fluxcd/helm-controller/api/v2beta1"
+	corev1 "cue.dev/x/k8s.io/api/core/v1"
+	fluxv1 "cue.dev/x/crd/fluxcd.io/helm/v2"
 )
 
 #HelmRelease: fluxv1.#HelmRelease & {
 	_spec: #ReleaseSpec
 	_valuesFrom: [string]: string
-	apiVersion: "helm.toolkit.fluxcd.io/v2beta1"
+	apiVersion: "helm.toolkit.fluxcd.io/v2"
 	kind:       "HelmRelease"
 	metadata: {
 		name:        _spec.name

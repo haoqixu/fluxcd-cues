@@ -1,13 +1,13 @@
 package tenant
 
 import (
-	corev1 "k8s.io/api/core/v1"
-	fluxv1 "github.com/fluxcd/source-controller/api/v1beta2"
+	corev1 "cue.dev/x/k8s.io/api/core/v1"
+	fluxv1 "cue.dev/x/crd/fluxcd.io/source/v1"
 )
 
 #GitRepository: fluxv1.#GitRepository & {
 	_spec:      #TenantSpec
-	apiVersion: "source.toolkit.fluxcd.io/v1beta2"
+	apiVersion: "source.toolkit.fluxcd.io/v1"
 	kind:       "GitRepository"
 	metadata: {
 		name:        _spec.name

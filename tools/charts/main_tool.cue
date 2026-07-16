@@ -8,7 +8,7 @@ import (
 	"strings"
 	"text/tabwriter"
 
-	fluxv1 "github.com/fluxcd/source-controller/api/v1beta2"
+	fluxv1 "cue.dev/x/crd/fluxcd.io/source/v1"
 )
 
 vars: {
@@ -29,8 +29,8 @@ command: fetch: {
 	objects: {
 		for r in artifacthub.packages {
 			"\(r.package_id)-repo": fluxv1.#HelmRepository & {
-				apiVersion: "source.toolkit.fluxcd.io/v1beta2"
-				kind:       fluxv1.#HelmRepositoryKind
+				apiVersion: "source.toolkit.fluxcd.io/v1"
+				kind:       "HelmRepository"
 				metadata: name:      "\(r.name)-\(strings.Split(r.package_id, "-")[0])"
 				metadata: namespace: vars.namespace
 				spec: {
@@ -40,8 +40,8 @@ command: fetch: {
 				}
 			}
 			"\(r.package_id)-chart": fluxv1.#HelmChart & {
-				apiVersion: "source.toolkit.fluxcd.io/v1beta2"
-				kind:       fluxv1.#HelmChartKind
+				apiVersion: "source.toolkit.fluxcd.io/v1"
+				kind:       "HelmChart"
 				metadata: name:      "\(r.name)-\(strings.Split(r.package_id, "-")[0])"
 				metadata: namespace: vars.namespace
 				spec: {
@@ -49,7 +49,7 @@ command: fetch: {
 					chart:    r.name
 					version:  "*"
 					sourceRef: {
-						kind: fluxv1.#HelmRepositoryKind
+						kind: "HelmRepository"
 						name: metadata.name
 					}
 				}

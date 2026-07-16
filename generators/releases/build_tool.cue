@@ -7,12 +7,10 @@ import (
 	"tool/exec"
 	"tool/file"
 	"text/tabwriter"
-
-	kubernetes "k8s.io/apimachinery/pkg/runtime"
 )
 
 // The resources map holds the Kubernetes objects belonging to all releases.
-resources: [ID=_]: kubernetes.#Object
+resources: [ID=_]: _
 for re in releases {
 	resources: re.resources
 }

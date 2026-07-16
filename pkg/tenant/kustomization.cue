@@ -1,12 +1,12 @@
 package tenant
 
 import (
-	fluxv1 "github.com/fluxcd/kustomize-controller/api/v1beta2"
+	fluxv1 "cue.dev/x/crd/fluxcd.io/kustomize/v1"
 )
 
 #Kustomization: fluxv1.#Kustomization & {
 	_spec:      #TenantSpec
-	apiVersion: "kustomize.toolkit.fluxcd.io/v1beta2"
+	apiVersion: "kustomize.toolkit.fluxcd.io/v1"
 	kind:       "Kustomization"
 	metadata: {
 		name:        _spec.name

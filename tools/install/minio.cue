@@ -1,9 +1,9 @@
 package install
 
 import (
-	corev1 "k8s.io/api/core/v1"
-	sourcev1 "github.com/fluxcd/source-controller/api/v1beta2"
-	ksv1 "github.com/fluxcd/kustomize-controller/api/v1beta2"
+	corev1 "cue.dev/x/k8s.io/api/core/v1"
+	sourcev1 "cue.dev/x/crd/fluxcd.io/source/v1"
+	ksv1 "cue.dev/x/crd/fluxcd.io/kustomize/v1"
 
 	"github.com/fluxcd/cues/pkg/release"
 )
@@ -61,7 +61,7 @@ minio: {
 }
 
 #MinioBucket: sourcev1.#Bucket & {
-	apiVersion: "source.toolkit.fluxcd.io/v1beta2"
+	apiVersion: "source.toolkit.fluxcd.io/v1"
 	kind:       "Bucket"
 	metadata:   minio.metadata
 	spec: {
@@ -84,7 +84,7 @@ minio: {
 }
 
 #MinioKustomization: ksv1.#Kustomization & {
-	apiVersion: "kustomize.toolkit.fluxcd.io/v1beta2"
+	apiVersion: "kustomize.toolkit.fluxcd.io/v1"
 	kind:       "Kustomization"
 	metadata:   minio.metadata
 	spec: {

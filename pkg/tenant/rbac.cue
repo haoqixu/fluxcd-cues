@@ -1,7 +1,7 @@
 package tenant
 
 import (
-	rbacv1 "k8s.io/api/rbac/v1"
+	rbacv1 "cue.dev/x/k8s.io/api/rbac/v1"
 )
 
 // This binding grants full access to all objects within the specified namespace.

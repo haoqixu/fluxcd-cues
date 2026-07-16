@@ -1,7 +1,7 @@
 package tenant
 
 import (
-	corev1 "k8s.io/api/core/v1"
+	corev1 "cue.dev/x/k8s.io/api/core/v1"
 )
 
 #Namespace: corev1.#Namespace & {

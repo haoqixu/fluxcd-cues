@@ -1,9 +1,5 @@
 package release
 
-import (
-	kubernetes "k8s.io/apimachinery/pkg/runtime"
-)
-
 #ReleaseSpec: {
 	name:             string & =~"^[a-z0-9]([a-z0-9\\-]){0,61}[a-z0-9]$"
 	namespace:        string & =~"^[a-z0-9]([a-z0-9\\-]){0,61}[a-z0-9]$"
@@ -27,7 +23,7 @@ import (
 
 #Release: {
 	spec: #ReleaseSpec
-	resources: [ID=_]:    kubernetes.#Object
+	resources: [ID=_]:    _
 	valuesFrom: [string]: string
 
 	if spec.values != null {

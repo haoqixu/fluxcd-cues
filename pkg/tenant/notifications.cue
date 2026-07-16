@@ -1,13 +1,13 @@
 package tenant
 
 import (
-	corev1 "k8s.io/api/core/v1"
-	fluxv1 "github.com/fluxcd/notification-controller/api/v1beta1"
+	corev1 "cue.dev/x/k8s.io/api/core/v1"
+	fluxv1 "cue.dev/x/crd/fluxcd.io/notification/v1beta3"
 )
 
 #SlackAlert: fluxv1.#Alert & {
 	_spec:      #TenantSpec
-	apiVersion: "notification.toolkit.fluxcd.io/v1beta1"
+	apiVersion: "notification.toolkit.fluxcd.io/v1beta3"
 	kind:       "Alert"
 	metadata: {
 		name:        "slack-\(_spec.name)"
@@ -41,7 +41,7 @@ import (
 
 #SlackProvider: fluxv1.#Provider & {
 	_spec:      #TenantSpec
-	apiVersion: "notification.toolkit.fluxcd.io/v1beta1"
+	apiVersion: "notification.toolkit.fluxcd.io/v1beta3"
 	kind:       "Provider"
 	metadata: {
 		name:        "slack-\(_spec.name)"

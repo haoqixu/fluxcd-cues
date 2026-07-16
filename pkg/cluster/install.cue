@@ -1,9 +1,6 @@
 package cluster
 
-import (
-	"github.com/fluxcd/cues/pkg/release"
-	kubernetes "k8s.io/apimachinery/pkg/runtime"
-)
+import "github.com/fluxcd/cues/pkg/release"
 
 #Install: {
 	name: string & =~"^[a-z0-9]([a-z0-9\\-]){0,61}[a-z0-9]$"
@@ -17,5 +14,5 @@ import (
 		components: *Components.Default | [...string]
 	}
 	addons: [...release.#Release]
-	addonsConfig: [...kubernetes.#Object]
+	addonsConfig: [...]
 }
