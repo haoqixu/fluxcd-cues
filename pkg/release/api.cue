@@ -21,14 +21,14 @@ import (
 		name:    string
 		version: string
 	}
-	values:       *null | {...}
+	values: *null | {...}
 	secretValues: *null | {...}
 }
 
 #Release: {
 	spec: #ReleaseSpec
-	resources: [ID=_]:     kubernetes.#Object
-	valuesFrom: [ string]: string
+	resources: [ID=_]:    kubernetes.#Object
+	valuesFrom: [string]: string
 
 	if spec.values != null {
 		let rv = #ReleaseValues & {_spec: spec}
@@ -43,7 +43,7 @@ import (
 	}
 
 	resources: "\(spec.name)-repository": #HelmRepository & {_spec: spec}
-	resources: "\(spec.name)-release":    #HelmRelease & {_spec:    spec, _valuesFrom: valuesFrom}
+	resources: "\(spec.name)-release": #HelmRelease & {_spec: spec, _valuesFrom: valuesFrom}
 
 	if spec.repository.password != "" {
 		resources: "\(spec.name)-reposecret": #HelmSecret & {_spec: spec}

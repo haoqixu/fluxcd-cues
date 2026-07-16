@@ -29,16 +29,16 @@ command: build: {
 	if outDir == "" {
 		if encrypt == "" {
 			task: print: cli.Print & {
-				text: yaml.MarshalStream([ for r in resources {r}])
+				text: yaml.MarshalStream([for r in resources {r}])
 			}
 		}
 
 		if encrypt == "sops" {
-			res: [ for r in resources if r.kind != "Secret" {r}]
+			res: [for r in resources if r.kind != "Secret" {r}]
 			printRes: cli.Print & {
 				text: yaml.MarshalStream(res)
 			}
-			secrets: [ for r in resources if r.kind == "Secret" {r}]
+			secrets: [for r in resources if r.kind == "Secret" {r}]
 			if len(secrets) > 0 {
 				printSeparator: cli.Print & {
 					$after: printRes
@@ -47,7 +47,7 @@ command: build: {
 				printSops: exec.Run & {
 					$after: printSeparator
 					stdin:  yaml.MarshalStream(secrets)
-					cmd: [ encrypt, "-e", "--input-type=yaml", "--output-type=yaml", "--encrypted-regex=^stringData$", "/dev/stdin"]
+					cmd: [encrypt, "-e", "--input-type=yaml", "--output-type=yaml", "--encrypted-regex=^stringData$", "/dev/stdin"]
 				}
 			}
 		}
@@ -58,7 +58,7 @@ command: build: {
 		for tn in list {
 			(tn.spec.name): {
 				tnDir: path.Join([outDir, tn.spec.name])
-				res: [ for r in tn.resources if r.kind != "Secret" {r}]
+				res: [for r in tn.resources if r.kind != "Secret" {r}]
 				print: cli.Print & {
 					text: "Exporting tenant resources to \(tnDir)/"
 				}
@@ -72,7 +72,7 @@ command: build: {
 					contents: yaml.MarshalStream(res)
 				}
 
-				secrets: [ for r in tn.resources if r.kind == "Secret" {r}]
+				secrets: [for r in tn.resources if r.kind == "Secret" {r}]
 				if len(secrets) > 0 {
 					printSecrets: cli.Print & {
 						$after: mkdir
@@ -90,7 +90,7 @@ command: build: {
 						}
 						writeSops: exec.Run & {
 							$after: printSops
-							cmd: [ encrypt, "-e", "-i", "--encrypted-regex=^stringData$", "\(tnDir)/secrets.yaml"]
+							cmd: [encrypt, "-e", "-i", "--encrypted-regex=^stringData$", "\(tnDir)/secrets.yaml"]
 						}
 					}
 				}

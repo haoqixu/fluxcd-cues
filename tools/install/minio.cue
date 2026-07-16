@@ -54,7 +54,7 @@ minio: {
 		}
 	}
 	resources: {
-		"flux-bucket":        #MinioBucket & {}
+		"flux-bucket": #MinioBucket & {}
 		"flux-bucket-secret": #MinioSecret & {}
 		"flux-kustomization": #MinioKustomization & {}
 	}

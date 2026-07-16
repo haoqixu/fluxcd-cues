@@ -11,7 +11,7 @@ import (
 
 #HelmRelease: fluxv1.#HelmRelease & {
 	_spec: #ReleaseSpec
-	_valuesFrom: [ string]: string
+	_valuesFrom: [string]: string
 	apiVersion: "helm.toolkit.fluxcd.io/v2beta1"
 	kind:       "HelmRelease"
 	metadata: {

@@ -40,7 +40,7 @@ command: install: {
 				(addon.spec.name): {
 					apply: exec.Run & {
 						$after: flux
-						stdin:  yaml.MarshalStream([ for r in addon.resources {r}])
+						stdin: yaml.MarshalStream([for r in addon.resources {r}])
 						cmd: [
 							"kubectl",
 							if c.kubeconfig.context != "" {
@@ -78,7 +78,7 @@ command: install: {
 							}
 							applyRes: exec.Run & {
 								$after: printRes
-								stdin:  yaml.MarshalStream([ for r in c.addonsConfig {r}])
+								stdin: yaml.MarshalStream([for r in c.addonsConfig {r}])
 								cmd: [
 									"kubectl",
 									if c.kubeconfig.context != "" {

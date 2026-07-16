@@ -59,7 +59,7 @@ command: fetch: {
 
 	if vars.out == "yaml" {
 		task: toyaml: cli.Print & {
-			text: yaml.MarshalStream([ for obj in objects {obj}])
+			text: yaml.MarshalStream([for obj in objects {obj}])
 		}
 	}
 

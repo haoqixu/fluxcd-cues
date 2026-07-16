@@ -31,7 +31,7 @@ command: seal: {
 				}
 				sops: exec.Run & {
 					$after: print
-					cmd: [ "sops", "-e", "-i", filepath]
+					cmd: ["sops", "-e", "-i", filepath]
 				}
 			}
 		}
@@ -60,7 +60,7 @@ command: unseal: {
 				}
 				sops: exec.Run & {
 					$after: print
-					cmd: [ "sops", "-d", "-i", filepath]
+					cmd: ["sops", "-d", "-i", filepath]
 				}
 			}
 		}

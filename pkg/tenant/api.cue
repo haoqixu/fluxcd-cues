@@ -25,10 +25,10 @@ package tenant
 	spec: #TenantSpec
 
 	resources: {
-		"\(spec.name)-namespace":      #Namespace & {_spec:      spec}
+		"\(spec.name)-namespace": #Namespace & {_spec: spec}
 		"\(spec.name)-serviceaccount": #ServiceAccount & {_spec: spec}
-		"\(spec.name)-gitrepository":  #GitRepository & {_spec:  spec}
-		"\(spec.name)-kustomization":  #Kustomization & {_spec:  spec}
+		"\(spec.name)-gitrepository": #GitRepository & {_spec: spec}
+		"\(spec.name)-kustomization": #Kustomization & {_spec: spec}
 	}
 
 	if spec.role == "namespace-admin" {
@@ -45,9 +45,9 @@ package tenant
 
 	if spec.slack.token != "" {
 		resources: {
-			"\(spec.name)-slacksecret":   #SlackSecret & {_spec:   spec}
+			"\(spec.name)-slacksecret": #SlackSecret & {_spec: spec}
 			"\(spec.name)-slackprovider": #SlackProvider & {_spec: spec}
-			"\(spec.name)-slackalert":    #SlackAlert & {_spec:    spec}
+			"\(spec.name)-slackalert": #SlackAlert & {_spec: spec}
 		}
 	}
 }
